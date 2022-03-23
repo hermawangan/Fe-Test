@@ -1,70 +1,118 @@
-# Getting Started with Create React App
+# Front-End Test
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a solution to the Front-end Test.
 
-## Available Scripts
+## Table of contents
 
-In the project directory, you can run:
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [Code](#code)
+  - [Useful resources](#useful-resources)
+- [Author](#author)
 
-### `npm start`
+## Overview
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### The challenge
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Users should be able to:
 
-### `npm test`
+- View the optimal layout for the site depending on their device's screen size
+- See hover states for all interactive elements on the page
+- Login if the username and password are correct
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## My process
 
-### `npm run build`
+### Built with
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Semantic HTML5 markup
+- CSS
+- Flexbox
+- [React](https://reactjs.org/)
+- [Redux](https://redux.js.org/)
+- [Axios](https://axios-http.com/)
+- [React-Icons](https://react-icons.github.io/react-icons/search)
+- [React-Paginate](https://www.npmjs.com/package/react-paginate)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Code
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```JavaScript
+  {success ? (
+        <Dashboard />
+      ) : (
+        <div className="form-container">
+          <form onSubmit={handlerForm} className="form">
+            <h2 className="form-title">Login Page</h2>
+            <div className="input-container">
+              <input
+                id="username"
+                className="input"
+                type="text"
+                placeholder="username"
+                value={user.username}
+                onChange={controlFormUsername}
+              />
+              <input
+                id="password"
+                className="input"
+                type="password"
+                placeholder="password"
+                value={user.password}
+                onChange={controlFormPassword}
+              />
+              <button className="input button">Login </button>
+            </div>
+          </form>
+        </div>
+      )}
+```
 
-### `npm run eject`
+The Code above shows that if success is true it will render a new component called Dashboard and vice-versa. Variable Success wil only became true if users input the username and password correctly. else variable success wil never be true
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```js
+export const fetchPost = () => {
+  return (dispatch) => {
+    dispatch(fetchPostReq);
+    axios
+      .get("https://jsonplaceholder.typicode.com/posts")
+      .then((response) => {
+        const post = response.data;
+        dispatch(fetchPostSuccess(post));
+      })
+      .catch((error) => {
+        const errorMsg = error.message;
+        dispatch(fetchPostFail(errorMsg));
+      });
+  };
+};
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The code above wil fetch the post data. before fetching i created a fetchPostReq, fetchPostSuccess and fetchPostFail action builder. it then will tell to the reducer function based on the fetching data. first it will tell to the reducer when fetching the data. after fetching, the outcomes will be resolved or rejected. if it is resolved the the fetchPostSuccess will take a parameter data and pass it to the reducer function as action.payload. the same case as rejected.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```js
+const mapStateToProps = (state) => {
+  return {
+    id: state.id.id,
+  };
+};
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+const mapDispatchToState = (dispatch) => {
+  return {
+    userId: (id) => dispatch(userId(id)),
+  };
+};
 
-## Learn More
+export default connect(mapStateToProps, mapDispatchToState)(LoginForm);
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Code above is a react-redux code concept basically is to connect redux state to react component. mapStateToProps function will take state as a parameter and wil return state. The code above mapStateToProps return a state called id. mapDispatchToState is a function that takes in dispatch and returning an action function called userId. The above code mapDispatchToState return an userId and takes in id as a parameter. the name for both function could be name anything but this is name that used by everyone. and connect method is actually to connect both function to the react components as a props.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Useful resources
 
-### Code Splitting
+- [Create Pagination in React APp](https://medium.com/how-to-react/create-pagination-in-react-js-using-react-hooks-c3c582ff5a96) - I able to create a pagination in this challenge by looking and reading the documentation in that website. -[React-Redux](https://www.youtube.com/playlist?list=PLC3y8-rFHvwheJHvseC3I0HuYI2f46oAK) - I learn to implement redux in React is from watching and learning in this channel.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Author
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Twitter - [@hermawangan39](https://twitter.com/hermawangan39)
+- LinkedIn - [@hermawangan](https://www.linkedin.com/in/hermawan-gan/)

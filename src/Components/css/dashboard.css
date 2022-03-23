@@ -1,0 +1,88 @@
+.dashboard-container {
+  margin: 10px;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+}
+
+.title-logo {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.post {
+  padding: 10px;
+  color: grey;
+  border-bottom: 2px solid#2982f8;
+}
+
+.user {
+  color: #2982f8;
+  cursor: pointer;
+}
+
+.detail-profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  position: absolute;
+  right: 0;
+  padding-right: 30px;
+  width: 100%;
+}
+
+.prev-icon {
+  margin-left: 200px;
+  display: flex;
+  cursor: pointer;
+}
+
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 15px solid #2982f8;
+  margin-right: 10px;
+}
+
+.detail-profile {
+  border: 2px solid#2982f8;
+  padding: 10px;
+  border-radius: 10px;
+  color: #000;
+  background-color: #fff;
+}
+
+@media screen and (max-width: 758px) {
+  .title-logo {
+    font-size: 1.5rem;
+  }
+
+  .post,
+  .user-dashboard {
+    font-size: 1rem;
+  }
+
+  .prev-icon {
+    margin-left: 100px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .title-logo {
+    font-size: 1rem;
+  }
+
+  .user-dashboard,
+  .post {
+    font-size: 0.6rem;
+  }
+  .prev-icon {
+    margin-left: 10px;
+  }
+}

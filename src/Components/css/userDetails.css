@@ -1,0 +1,58 @@
+.user-container {
+  display: flex;
+  justify-content: center;
+}
+.user-ul {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin-top: 30px;
+}
+
+.user-li {
+  list-style: none;
+  padding: 10px;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+}
+
+.key {
+  padding-right: 10px;
+  width: 20%;
+  color: #828285;
+}
+
+.equal {
+  width: 30%;
+}
+
+.value {
+  width: 50%;
+}
+
+@media screen and (max-width: 758px) {
+  .user-ul {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .user-ul {
+    width: 80%;
+  }
+  .value {
+    width: 40%;
+    font-size: 0.8rem;
+  }
+
+  .key {
+    font-size: 0.8rem;
+    width: 30%;
+  }
+
+  .equal {
+    font-size: 0.8rem;
+  }
+}
