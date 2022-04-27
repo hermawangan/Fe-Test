@@ -34,7 +34,7 @@ function GetDetail({ id, clickForParents }) {
         loading ? (
           <h2>Loading, please wait</h2>
         ) : (
-          <div>
+          <div key={comments.id}>
             <span onClick={clickHandler} className="arrow-icon">
               <FaArrowLeft />
             </span>

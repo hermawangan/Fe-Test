@@ -15,7 +15,6 @@ function Post({ posts, fetchPost, loading }) {
 
   useEffect(() => {
     fetchPost();
-
     const slice = posts.slice(offset - 1, offset - 1 + postsPerPage);
     setAllPostsData(slice);
     setPageCount(Math.ceil(posts.length / postsPerPage));
@@ -39,27 +38,24 @@ function Post({ posts, fetchPost, loading }) {
           <div className="container-post">
             {postsAllData.map((post) => {
               return (
-                <>
-                  <div key={post.id}>
-                    <div>
-                      <ul className="container-title">
-                        <li className="li-title">{post.title}</li>
-                      </ul>
+                <div className="li-container" key={post.id}>
+                  <>
+                    <ul className="container-title">
+                      <li className="li-title">{post.title}</li>
+                    </ul>
 
-                      <div
-                        className={
-                          clickFromChild ? "post-active" : "post-detail"
-                        }
-                      >
-                        <GetComment id={post.id} />
-                        <GetDetail
-                          id={post.id}
-                          clickForParents={getClickFromChild}
-                        />
-                      </div>
+                    <div
+                      className={clickFromChild ? "post-active" : "post-detail"}
+                      key={post.id}
+                    >
+                      <GetComment id={post.id} />
+                      <GetDetail
+                        id={post.id}
+                        clickForParents={getClickFromChild}
+                      />
                     </div>
-                  </div>
-                </>
+                  </>
+                </div>
               );
             })}
             <ReactPaginate
@@ -68,6 +64,8 @@ function Post({ posts, fetchPost, loading }) {
               breakLabel={"..."}
               breakClassName={"break-me"}
               pageCount={pageCount}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={5}
               onPageChange={handlePageClick}
               containerClassName={"pagination"}
               subContainerClassName={"pages pagination"}
