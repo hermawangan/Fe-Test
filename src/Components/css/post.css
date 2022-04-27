@@ -19,7 +19,7 @@
 
 .post-active {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
 }
 
 .li-title {
@@ -43,6 +43,7 @@
 
 .pagination > li > a {
   padding: 5px;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 758px) {
